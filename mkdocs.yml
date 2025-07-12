@@ -1,0 +1,21 @@
+site_name: Carleton AI Society Docs
+
+theme:
+  features:
+    - navigation.footer
+  favicon: assets/favicon.ico
+  logo: assets/header-club.png
+  font:
+    text: Roboto mono
+  name: material
+  palette:
+    scheme: slate
+    primary: black
+    accent: blue
+
+extra_css:
+  - stylesheets/extra.css
+
+icon:
+    repo: fontawesome/brands/simple/github
+repo_url: https://github.com/carletonai/docs
