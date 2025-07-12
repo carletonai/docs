@@ -3,7 +3,15 @@ site_name: Carleton AI Society Docs
 theme:
   features:
     - navigation.footer
-  favicon: assets/favicon.ico
+    - content.code.copy
+    - navigation.top
+    - navigation.instant
+    - navigation.instant.prefetch
+    - toc.integrate
+    
+
+
+  favicon: assets/club.png  
   logo: assets/header-club.png
   font:
     text: Roboto mono
@@ -16,6 +24,14 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
-icon:
-    repo: fontawesome/brands/simple/github
 repo_url: https://github.com/carletonai/docs
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+

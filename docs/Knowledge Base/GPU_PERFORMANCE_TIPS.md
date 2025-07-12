@@ -2,13 +2,13 @@
 
 This document provides comprehensive GPU performance optimization tips for the CuMind project, based on JAX best practices and analysis of the current codebase.
 
-## Table of Contents
+<!-- ## Table of Contents
 1. [Quick Start](#quick-start)
 2. [Environment Configuration](#environment-configuration)
 3. [Code Optimizations](#code-optimizations)
 4. [Implementation Examples](#implementation-examples)
 5. [Benchmarking](#benchmarking)
-6. [Troubleshooting](#troubleshooting)
+6. [Troubleshooting](#troubleshooting) -->
 
 ## Quick Start
 
