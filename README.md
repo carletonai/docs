@@ -1,7 +1,6 @@
 # TODO
 
-- Husky, prettier, eslint, commitizen
-- Add pages/issues
+- Add pages/issues/templates
 - This readme (for local dev)
 - CodeRabbit
 - GitOps
