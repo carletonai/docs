@@ -20,7 +20,7 @@ Provide a clear and concise description of the internal work needed.
 - [ ] Platform/infrastructure
 - [ ] Documentation
 - [ ] Maintenance
-- [ ] Other: ****\_\_\_****
+- [ ] Other: \***\*\_\_\_\*\***
 
 ## Details
 
