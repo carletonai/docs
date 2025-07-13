@@ -1,4 +1,4 @@
 # TODO
 
-- Add pages/issues/templates
+- Add pages/issues
 - This readme (for local dev)
