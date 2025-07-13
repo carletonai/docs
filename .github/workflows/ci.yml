@@ -26,4 +26,20 @@ jobs:
           restore-keys: |
             mkdocs-material-
       - run: pip install mkdocs-material
-      - run: mkdocs gh-deploy
+      - name: Build MkDocs site
+        run: mkdocs build
+
+      - name: Deploy to gh-pages (no force)
+        run: |
+          git fetch origin gh-pages
+          git worktree add gh-pages-temp origin/gh-pages
+
+          rsync -av --delete site/ gh-pages-temp/
+          touch gh-pages-temp/.nojekyll
+
+          cd gh-pages-temp
+          git add .
+          git commit -m "Update docs [skip ci]" || echo "No changes"
+          git push origin HEAD:gh-pages
+          cd ..
+          git worktree remove gh-pages-temp
