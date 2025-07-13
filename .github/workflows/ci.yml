@@ -36,7 +36,7 @@ jobs:
           git branch gh-pages origin/gh-pages
           git worktree add gh-pages-temp gh-pages
 
-          rsync -av --delete site/ gh-pages-temp/
+          rsync -av --delete --exclude=.git site/ gh-pages-temp/
           touch gh-pages-temp/.nojekyll
 
           cd gh-pages-temp
