@@ -1,0 +1,34 @@
+site_name: Carleton AI Society Docs
+
+theme:
+  features:
+    - navigation.footer
+    - content.code.copy
+    - navigation.top
+    - navigation.instant
+    - navigation.instant.prefetch
+    - toc.integrate
+
+  favicon: assets/club.png
+  logo: assets/header-club.png
+  font:
+    text: Roboto mono
+  name: material
+  palette:
+    scheme: slate
+    primary: black
+    accent: blue
+
+extra_css:
+  - stylesheets/extra.css
+
+repo_url: https://github.com/carletonai/docs
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
