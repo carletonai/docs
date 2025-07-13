@@ -8,10 +8,8 @@ theme:
     - navigation.instant
     - navigation.instant.prefetch
     - toc.integrate
-    
 
-
-  favicon: assets/club.png  
+  favicon: assets/club.png
   logo: assets/header-club.png
   font:
     text: Roboto mono
@@ -34,4 +32,3 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
-

@@ -1,6 +1,8 @@
 # GPU Performance Optimization Guide for CuMind
 
-This document provides comprehensive GPU performance optimization tips for the CuMind project, based on JAX best practices and analysis of the current codebase.
+This document provides comprehensive GPU performance optimization tips for the
+CuMind project, based on JAX best practices and analysis of the current
+codebase.
 
 <!-- ## Table of Contents
 1. [Quick Start](#quick-start)
@@ -15,6 +17,7 @@ This document provides comprehensive GPU performance optimization tips for the C
 ### Essential GPU Optimizations
 
 1. **Enable XLA optimizations** by setting environment variables before running:
+
 ```bash
 export XLA_FLAGS='--xla_gpu_triton_gemm_any=True --xla_gpu_enable_latency_hiding_scheduler=true'
 export JAX_ENABLE_PGLE=true
@@ -22,15 +25,17 @@ export JAX_PGLE_PROFILING_RUNS=3
 ```
 
 2. **Use mixed precision** by configuring dtypes in `configuration.json`:
+
 ```json
 "Data Types": {
     "model_dtype": "bfloat16",
-    "action_dtype": "int32", 
+    "action_dtype": "int32",
     "target_dtype": "float32"
 }
 ```
 
 3. **Run with one process per GPU**:
+
 ```bash
 # For single GPU
 python -m cumind train
@@ -62,7 +67,7 @@ os.environ['JAX_PGLE_PROFILING_RUNS'] = '3'  # Number of profiling runs
 # NCCL communication optimization (for multi-GPU)
 os.environ.update({
     "NCCL_LL128_BUFFSIZE": "-2",
-    "NCCL_LL_BUFFSIZE": "-2", 
+    "NCCL_LL_BUFFSIZE": "-2",
     "NCCL_PROTO": "SIMPLE,LL,LL128",
 })
 ```
@@ -105,10 +110,10 @@ Use bfloat16 for faster computation on modern GPUs (A100, V100):
 # In network.py
 def __init__(self, ..., model_dtype: str = "bfloat16"):
     self.dtype = get_dtype(model_dtype)
-    
+
     # Use mixed precision in layers
     self.dense = nnx.Dense(
-        in_features, 
+        in_features,
         out_features,
         dtype=self.dtype,  # Computation in bfloat16
         param_dtype=jnp.float32  # Parameters in float32
@@ -157,10 +162,10 @@ import functools
 class Trainer:
     def __init__(self, config: Config):
         # ... existing code ...
-        
+
         # JIT compile the training step
         self._train_step_jit = jax.jit(self._train_step)
-    
+
     @functools.partial(jax.jit, donate_argnums=(0, 1))
     def _train_step(self, params, opt_state, batch):
         """JIT-compiled training step with donated buffers."""
@@ -177,7 +182,7 @@ class Trainer:
 @chex.dataclass
 class Config:
     # ... existing fields ...
-    
+
     # GPU optimization settings
     use_mixed_precision: bool = True
     jit_compile: bool = True
@@ -196,14 +201,14 @@ class DistributedRunner:
     def __init__(self, config: Config):
         self.num_devices = jax.device_count()
         print(f"Using {self.num_devices} GPUs")
-        
+
         # Replicate model across devices
         self.train_step = pmap(self._train_step, axis_name='devices')
-    
+
     def train_epoch(self, data):
         # Shard data across devices
         data_per_device = data.reshape(self.num_devices, -1, *data.shape[1:])
-        
+
         # Parallel training step
         new_params = self.train_step(self.params, data_per_device)
 ```
@@ -224,19 +229,19 @@ def benchmark_inference(config: Config, num_runs: int = 1000):
     """Benchmark inference speed on GPU."""
     agent = Agent(config)
     observation = jnp.ones(config.observation_shape)
-    
+
     # Warm-up
     for _ in range(10):
         _ = agent.select_action(observation, training=False)
-    
+
     # Benchmark
     start_time = time.time()
     for _ in range(num_runs):
         _ = agent.select_action(observation, training=False)
-    
+
     # Force completion
     jax.block_until_ready(agent.network.state)
-    
+
     elapsed = time.time() - start_time
     print(f"Inference speed: {num_runs / elapsed:.2f} steps/second")
 
@@ -246,7 +251,7 @@ if __name__ == "__main__":
         Config(model_dtype="float32"),
         Config(model_dtype="bfloat16"),
     ]
-    
+
     for config in configs:
         print(f"\nTesting with dtype: {config.model_dtype}")
         benchmark_inference(config)
@@ -259,10 +264,12 @@ if __name__ == "__main__":
 1. **Out of Memory (OOM) Errors**
    - Reduce batch size
    - Use gradient accumulation
-   - Enable memory optimization: `os.environ['XLA_PYTHON_CLIENT_PREALLOCATE'] = 'false'`
+   - Enable memory optimization:
+     `os.environ['XLA_PYTHON_CLIENT_PREALLOCATE'] = 'false'`
 
 2. **Slow Compilation**
-   - Cache compiled functions: `jax.config.update('jax_persistent_cache_min_compile_time_secs', 1.0)`
+   - Cache compiled functions:
+     `jax.config.update('jax_persistent_cache_min_compile_time_secs', 1.0)`
    - Reduce JIT compilation overhead by batching operations
 
 3. **Mixed Precision Instability**
