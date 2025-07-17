@@ -487,6 +487,57 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#essential-linux-usage-for-contributors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Essential Linux Usage for Contributors
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Essential Linux Usage for Contributors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-linux-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Linux Commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-update-and-upgrade-the-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Update and Upgrade the System
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-sudo-and-apt-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      How sudo and apt Work
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tips-for-command-line-navigation-and-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tips for Command-Line Navigation and Safety
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#code-style" class="md-nav__link">
     <span class="md-ellipsis">
       Code Style
@@ -876,6 +927,177 @@ branch. For most work, push directly to <code>dev</code> after passing all check
 <li><a href="https://learngitbranching.js.org/">Learn Git Branching</a> - Interactive
   tutorial</li>
 <li><a href="https://ohshitgit.com/">Oh Shit Git</a> - Common problems and solutions</li>
+</ul>
+<h2 id="essential-linux-usage-for-contributors">Essential Linux Usage for Contributors</h2>
+<p>Linux is a powerful open-source operating system. As a contributor, understanding basic command-line usage is key. This guide covers essential commands, system updates, and best practices for command-line work.</p>
+<hr />
+<h3 id="basic-linux-commands">Basic Linux Commands</h3>
+<p>The command line is your main interface. Here are core commands you'll use often:</p>
+<ul>
+<li><strong><code>ls</code> (list):</strong> Shows directory contents.<ul>
+<li><code>ls</code>: Lists files and directories in the current location.<ul>
+<li><em>Example:</em> <code>ls</code> might output <code>documents images myproject.txt</code></li>
+</ul>
+</li>
+<li><code>ls -l</code>: Provides a "long listing" with details like permissions, size, and date.<ul>
+<li><em>Example:</em> <code>ls -l</code> might show <code>-rw-r--r-- 1 user group 1024 Jul 10 10:30 myproject.txt</code></li>
+</ul>
+</li>
+<li><code>ls -a</code>: Shows all files, including hidden ones (starting with a <code>.</code>).<ul>
+<li><em>Example:</em> <code>ls -a</code> might reveal <code>.bashrc .config documents</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong><code>cd</code> (change directory):</strong> Navigates between directories.<ul>
+<li><code>cd &lt;directory_name&gt;</code>: Moves to a specific directory.<ul>
+<li><em>Example:</em> <code>cd documents</code></li>
+</ul>
+</li>
+<li><code>cd ..</code>: Moves up one directory level.<ul>
+<li><em>Example:</em> If in <code>/home/user/documents</code>, <code>cd ..</code> moves to <code>/home/user/</code></li>
+</ul>
+</li>
+<li><code>cd ~</code>: Returns to your home directory.<ul>
+<li><em>Example:</em> No matter where you are, <code>cd ~</code> takes you to <code>/home/user/</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong><code>pwd</code> (print working directory):</strong> Displays your current directory's full path.<ul>
+<li><em>Example:</em> <code>pwd</code> might output <code>/home/user/myproject</code></li>
+</ul>
+</li>
+<li><strong><code>mkdir</code> (make directory):</strong> Creates a new directory.<ul>
+<li><em>Example:</em> <code>mkdir new_folder</code></li>
+</ul>
+</li>
+<li><strong><code>rmdir</code> (remove directory):</strong> Deletes an empty directory.<ul>
+<li><em>Example:</em> <code>rmdir empty_folder</code></li>
+</ul>
+</li>
+<li><strong><code>touch</code>:</strong> Creates an empty file or updates a file's timestamp.<ul>
+<li><em>Example:</em> <code>touch new_file.txt</code> (creates a new empty file)</li>
+</ul>
+</li>
+<li><strong><code>cp</code> (copy):</strong> Copies files or directories.<ul>
+<li><code>cp &lt;source_file&gt; &lt;destination_file&gt;</code>: Copies a file.<ul>
+<li><em>Example:</em> <code>cp report.docx report_backup.docx</code></li>
+</ul>
+</li>
+<li><code>cp -r &lt;source_directory&gt; &lt;destination_directory&gt;</code>: Copies a directory and its contents.<ul>
+<li><em>Example:</em> <code>cp -r myproject myproject_copy</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong><code>mv</code> (move):</strong> Moves or renames files/directories.<ul>
+<li><em>Example (move):</em> <code>mv old_file.txt documents/</code> (moves <code>old_file.txt</code> into the <code>documents</code> folder)</li>
+<li><em>Example (rename):</em> <code>mv old_name.txt new_name.txt</code></li>
+</ul>
+</li>
+<li><strong><code>rm</code> (remove):</strong> Deletes files or directories.<ul>
+<li><code>rm &lt;file_name&gt;</code>: Deletes a file.<ul>
+<li><em>Example:</em> <code>rm unwanted_file.txt</code></li>
+</ul>
+</li>
+<li><code>rm -r &lt;directory_name&gt;</code>: Recursively deletes a directory (use with extreme caution!).<ul>
+<li><em>Example:</em> <code>rm -r old_project_folder</code> (Deletes the folder and everything inside it)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong><code>cat</code> (concatenate):</strong> Displays a file's content.<ul>
+<li><em>Example:</em> <code>cat README.md</code> (shows the content of the README.md file)</li>
+</ul>
+</li>
+<li><strong><code>less</code> / <code>more</code>:</strong> Views file content page by page for large files.<ul>
+<li><em>Example:</em> <code>less /var/log/syslog</code> (allows you to scroll through a large log file; press <code>q</code> to quit)</li>
+</ul>
+</li>
+<li><strong><code>grep</code>:</strong> Searches for text patterns within files.<ul>
+<li><em>Example:</em> <code>grep "error" /var/log/syslog</code> (finds all lines containing "error" in the syslog file)</li>
+</ul>
+</li>
+<li><strong><code>man</code> (manual):</strong> Provides documentation for commands.<ul>
+<li><em>Example:</em> <code>man ls</code> (shows the manual page for the <code>ls</code> command; press <code>q</code> to quit)</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="how-to-update-and-upgrade-the-system">How to Update and Upgrade the System</h3>
+<p>Keeping your system updated is vital for security and new features. For Debian-based systems (like Ubuntu), use <code>apt</code>:</p>
+<ul>
+<li><strong><code>sudo apt update</code></strong>: Refreshes the list of available packages from repositories.<ul>
+<li><em>Example:</em> <code>sudo apt update</code> (You'll see a list of package information being downloaded)</li>
+</ul>
+</li>
+<li><strong><code>sudo apt upgrade</code></strong>: Installs newer versions of all currently installed packages.<ul>
+<li><em>Example:</em> <code>sudo apt upgrade</code> (Prompts you to confirm the installation of available updates)</li>
+</ul>
+</li>
+<li><strong><code>sudo apt full-upgrade</code></strong>: Performs a more comprehensive upgrade, installing new packages if needed for dependencies and removing obsolete ones.<ul>
+<li><em>Example:</em> <code>sudo apt full-upgrade</code> (Use for major system version upgrades or when <code>upgrade</code> is insufficient)</li>
+</ul>
+</li>
+</ul>
+<p><strong>To update:</strong></p>
+<ol>
+<li>Open your terminal.</li>
+<li>Run <code>sudo apt update</code>.</li>
+<li>Then, run <code>sudo apt upgrade</code>.</li>
+<li>Optionally, use <code>sudo apt full-upgrade</code> for a deeper update.</li>
+</ol>
+<hr />
+<h3 id="how-sudo-and-apt-work">How <code>sudo</code> and <code>apt</code> Work</h3>
+<ul>
+<li>
+<p><strong><code>sudo</code> (SuperUser DO):</strong></p>
+<ul>
+<li><strong>Function:</strong> Allows you to run commands with <strong>root (administrator) privileges</strong> using <em>your own password</em>.</li>
+<li><strong>When to use:</strong> For tasks requiring elevated permissions, like installing software, modifying system files, or managing services.</li>
+<li><strong>Caution:</strong> Always be careful with <code>sudo</code>; incorrect commands can harm your system.<ul>
+<li><em>Example:</em> <code>sudo systemctl restart apache2</code> (restarts the Apache web server, requires root privileges)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>apt</code> (Advanced Package Tool):</strong></p>
+<ul>
+<li><strong>Function:</strong> A command-line utility for managing software packages (installing, updating, removing) on Debian-based systems. It interacts with software repositories.</li>
+<li><strong>When to use:</strong><ul>
+<li><code>apt install &lt;package_name&gt;</code>: Install new software.<ul>
+<li><em>Example:</em> <code>sudo apt install git</code> (installs the Git version control system)</li>
+</ul>
+</li>
+<li><code>apt remove &lt;package_name&gt;</code>: Uninstall software (leaves configuration files).<ul>
+<li><em>Example:</em> <code>sudo apt remove firefox</code></li>
+</ul>
+</li>
+<li><code>apt purge &lt;package_name&gt;</code>: Uninstall software and its configuration files.<ul>
+<li><em>Example:</em> <code>sudo apt purge apache2</code></li>
+</ul>
+</li>
+<li><code>apt search &lt;keyword&gt;</code>: Find packages.<ul>
+<li><em>Example:</em> <code>apt search text editor</code> (lists available text editor packages)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="tips-for-command-line-navigation-and-safety">Tips for Command-Line Navigation and Safety</h3>
+<p>Here are some best practices to make your command-line work more efficient and secure:</p>
+<ul>
+<li><strong>Tab Completion:</strong> Press the <code>Tab</code> key to auto-complete commands, file names, or directory names. Press <code>Tab</code> twice to see all available options if there's more than one.</li>
+<li><strong>Arrow Keys:</strong> Use the <code>Up</code> and <code>Down</code> arrow keys to cycle through your command history. This saves typing and helps recall previous commands.</li>
+<li><strong><code>Ctrl+R</code> (Reverse Search):</strong> Press <code>Ctrl+R</code> and start typing to search your command history for a specific command. It's incredibly useful for finding a command you ran a while ago.</li>
+<li><strong>Read the Manual (<code>man</code>):</strong> If you're unsure about a command or its options, use <code>man &lt;command_name&gt;</code> for detailed documentation. Press <code>q</code> to quit the manual.</li>
+<li><strong>Be Careful with <code>sudo</code>:</strong> Always double-check your commands before pressing Enter when using <code>sudo</code>. Commands run with root privileges can make significant, irreversible changes to your system if executed incorrectly.</li>
+<li><strong>Backup Regularly:</strong> Make a habit of backing up important files and configurations, especially before performing major system changes or software installations. This can save you from potential data loss.</li>
 </ul>
 <h2 id="code-style">Code Style</h2>
 <p><strong>Keep it simple and elegant!</strong></p>
