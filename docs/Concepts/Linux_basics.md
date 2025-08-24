@@ -1,4 +1,4 @@
-# Essential Linux Usage for Contributors
+# Linux Basics
 
 Linux is a powerful open-source operating system. As a contributor, understanding basic command-line usage is key. This guide covers essential commands, system updates, and best practices for command-line work.
 
