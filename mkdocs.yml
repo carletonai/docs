@@ -19,9 +19,6 @@ theme:
     primary: black
     accent: blue
 
-extra_css:
-  - stylesheets/extra.css
-
 repo_url: https://github.com/carletonai/docs
 
 markdown_extensions:
